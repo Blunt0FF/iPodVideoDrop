@@ -1,5 +1,7 @@
 # iPod Video Drop
 
+<img src="iPodVideoDropIcon.png" alt="iPod Video Drop icon" width="128" height="128">
+
 Native macOS app (Cocoa/Objective-C) that converts video into the format iPod nano 7 lists under **Movies** (instead of "Music Videos" or anything else carrying artist/album metadata).
 
 Drag a video file into the window and get an `.m4v` back, ready to sync through the Apple TV app (or iTunes on older macOS) and correctly recognized by iPod nano 7 as a movie.
