@@ -1,31 +1,31 @@
 # iPod Video Drop
 
-Нативное macOS-приложение (Cocoa/Objective-C) для конвертации видео в формат, который iPod nano 7 показывает в разделе **Movies** (а не «Music Videos» или что-то ещё с лишними полями артиста/альбома).
+Native macOS app (Cocoa/Objective-C) that converts video into the format iPod nano 7 lists under **Movies** (instead of "Music Videos" or anything else carrying artist/album metadata).
 
-Перетащите видеофайл в окно — на выходе получится `.m4v`, готовый к синхронизации через Apple TV app (или iTunes на старых macOS) и корректно распознаваемый iPod nano 7 как фильм.
+Drag a video file into the window and get an `.m4v` back, ready to sync through the Apple TV app (or iTunes on older macOS) and correctly recognized by iPod nano 7 as a movie.
 
-## Что делает
+## What it does
 
-- Конвертирует видео в H.264 Baseline, Level 3.0, yuv420p, до 640×480, 30 fps CFR
-- Аудио — AAC-LC, 160 kbps, стерео, 44.1 кГц
-- Пишет метаданные через AtomicParsley: `stik=value=9` (тип контента — **Movie**), поэтому на iPod файл попадает в «Фильмы», без лишних полей исполнителя/альбома, характерных для музыкальных клипов
-- Автоматически определяет вертикальное видео и поворачивает его на 90° перед масштабированием в альбомную рамку 640×480
-- Выходной файл: `<исходное имя>_iPod.m4v` рядом с исходником
-- Без всплывающего окна по завершении — просто следите за статусом в самом приложении; ⌘Q закрывает
+- Converts video to H.264 Baseline, Level 3.0, yuv420p, up to 640×480, 30 fps CFR
+- Audio: AAC-LC, 160 kbps, stereo, 44.1 kHz
+- Writes metadata via AtomicParsley: `stik=value=9` (content type **Movie**), so the file lands in "Movies" on the iPod, without the artist/album fields typical of music videos
+- Automatically detects portrait video and rotates it 90° before scaling into the 640×480 landscape frame
+- Output file: `<original name>_iPod.m4v` next to the source
+- No completion popup — just watch the status in the app itself; ⌘Q quits
 
-## Требования
+## Requirements
 
-- macOS 12.0 (Monterey) или новее
-- Xcode Command Line Tools (для сборки из исходников)
-- `ffmpeg` и `AtomicParsley` — приложение ищет их в `/opt/homebrew/bin`, `/usr/local/bin`, `/usr/bin`, либо предложит поставить через Homebrew прямо из интерфейса (`brew install ffmpeg atomicparsley`)
+- macOS 12.0 (Monterey) or later
+- Xcode Command Line Tools (to build from source)
+- `ffmpeg` and `AtomicParsley` — the app looks for them in `/opt/homebrew/bin`, `/usr/local/bin`, `/usr/bin`, or offers to install them via Homebrew right from the UI (`brew install ffmpeg atomicparsley`)
 
-Поставить зависимости заранее:
+Install dependencies ahead of time:
 
 ```bash
 brew install ffmpeg atomicparsley
 ```
 
-## Сборка
+## Build
 
 ```bash
 git clone git@github.com:Blunt0FF/iPodVideoDrop.git
@@ -33,22 +33,22 @@ cd iPodVideoDrop
 ./build.command
 ```
 
-Скрипт соберёт `iPod Video Drop.app` в корне репозитория (иконка генерируется из `iPodVideoDropIcon.png`). Готовое приложение можно перетащить в `/Applications`.
+The script builds `iPod Video Drop.app` in the repo root (the icon is generated from `iPodVideoDropIcon.png`). Drag the resulting app into `/Applications`.
 
-Либо забрать готовую сборку из [Releases](../../releases) — без установки Xcode.
+Or grab a prebuilt binary from [Releases](../../releases) — no Xcode required.
 
-## Использование
+## Usage
 
-1. Запустите `iPod Video Drop.app`.
-2. Если ffmpeg/AtomicParsley не найдены — приложение предложит установить их через Homebrew.
-3. Перетащите видеофайл (или несколько) в окно — конвертация начнётся автоматически.
-4. Готовый `<имя>_iPod.m4v` появится рядом с исходником.
-5. Синхронизируйте через приложение **TV** (или iTunes) на Mac → iPod nano 7 — файл ляжет в раздел **Movies**.
+1. Launch `iPod Video Drop.app`.
+2. If ffmpeg/AtomicParsley aren't found, the app offers to install them via Homebrew.
+3. Drag one or more video files into the window — conversion starts automatically.
+4. The resulting `<name>_iPod.m4v` appears next to the source file.
+5. Sync via the **TV** app (or iTunes) on your Mac → iPod nano 7 — the file lands in **Movies**.
 
-### Про `main-horizontal.m`
+### About `main-horizontal.m`
 
-В `iPodVideoDrop/` также лежит `main-horizontal.m` — более ранний вариант конвертера без автоповорота вертикального видео. Сборочный скрипт использует основной `main.m`; файл оставлен для истории/сравнения и в сборке не участвует.
+`iPodVideoDrop/` also contains `main-horizontal.m` — an earlier variant of the converter without portrait-video auto-rotation. The build script uses the main `main.m`; this file is kept for reference/comparison and is not part of the build.
 
-## Лицензия
+## License
 
 [MIT](LICENSE)
