@@ -1,0 +1,6 @@
+.build/
+*.app
+*.icns
+*.m4v
+.DS_Store
+__MACOSX/
