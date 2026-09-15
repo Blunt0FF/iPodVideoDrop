@@ -30,7 +30,7 @@ brew install ffmpeg atomicparsley
 ## Build
 
 ```bash
-git clone git@github.com:Blunt0FF/iPodVideoDrop.git
+git clone git@github.com:Kreal-exe/iPodVideoDrop.git
 cd iPodVideoDrop
 ./build.command
 ```
